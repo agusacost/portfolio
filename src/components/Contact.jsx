@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import secret from "../../Config";
+import { AiFillGithub } from "react-icons/ai";
+import { FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const Contact = () => {
   const { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY } = secret;
@@ -44,21 +46,54 @@ const Contact = () => {
   };
 
   return (
-    <div>
-      {!isSent ? (
-        <div id="Contact" className="lg:p-40 md:p-20 px-20 flex flex-col items-center">
-          <h1
-            data-aos="fade-right"
-            className="text-[52px] font-bold mb-10 leading-normal uppercase text-primary-dark"
-          >
-            Contacto
-          </h1>
+    <section
+      id="Contact"
+      className="grid md:grid-cols-2 my-12 md:my-12 py-24 mx-10 relative"
+    >
+      <div className="z-10">
+      <div className="col-span-2 md:col-span-1 flex flex-col justify-center items-center my-4 mx-8">
+      <h5
+        className="text-[22px] font-bold mt-0 text-primary-dark"
+      >
+        Contactemos!
+      </h5> 
+      <p className="mb-4 max-w-md text-justify">Siempre estoy abierto a nuevas probuestas, no dudes en enviarme un mensaje. Intento comunicarme con vos lo antes posible!</p>
+          <div className="flex space-x-2 ">
+            <a
+              href="https://github.com/agusacost"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-dark rounded-full glow p-2"
+            >
+              <AiFillGithub className="text-[28px]" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/juan-agustin-acosta-6840aa233"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-dark rounded-full glow p-2"
+            >
+              <FaLinkedin className="text-[28px]" />
+            </a>
+            <a
+              href="https://www.instagram.com/agustinacost_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-dark rounded-full glow p-2"
+            >
+              <FaInstagram className="text-[28px]" />
+            </a>
+            </div>
+    </div>
+    </div>
+      <div>
+        {!isSent ? (
           <form
             ref={form}
             onSubmit={handleSubmit}
-            className="flex flex-col gap-2 lg:w-1/2"
+            className="flex flex-col"
           >
-            <div className="lg:flex gap-6">
+            <div className="gap-6">
               <input
                 className="w-full my-3 rounded-lg p-4 border-2 border-primary-dark"
                 placeholder="Nombre"
@@ -79,7 +114,7 @@ const Contact = () => {
               placeholder="Escribi tu mensaje..."
               name="message"
               cols={30}
-              rows={10}
+              rows={5}
               onChange={(e) => setMessage(e.target.value)}
             />
             {error && <p>{error}</p>}
@@ -91,11 +126,11 @@ const Contact = () => {
               Enviar Mensaje
             </button>
           </form>
-        </div>
-      ) : (
-        <p>Enviado correctamente!</p>
-      )}
-    </div>
+        ) : (
+          <p className="text-green-500 text-sm mt-6 flex flex-col justify-center items-center">*Enviado correctamente!</p>
+        )}
+      </div>
+    </section>
   );
 };
 
